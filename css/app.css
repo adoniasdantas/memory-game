@@ -69,6 +69,11 @@ header h1 {
 .card .back {
     background: #018eff;
     transform: rotateY(180deg);
+    color: #fff;
+    font-size: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .open {
@@ -99,3 +104,4 @@ header h1 {
     float: right;
     cursor: pointer;
 }
+
