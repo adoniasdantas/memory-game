@@ -1,7 +1,24 @@
 /*
  * Create a list that holds all of your cards
  */
-
+let cards = [
+    `<i class="fa fa-diamond"></i>`,
+    `<i class="fa fa-paper-plane-o"></i>`,
+    `<i class="fa fa-anchor"></i>`,
+    `<i class="fa fa-bolt"></i>`,
+    `<i class="fa fa-cube"></i>`,
+    `<i class="fa fa-leaf"></i>`,
+    `<i class="fa fa-bicycle"></i>`,
+    `<i class="fa fa-bomb"></i>`,
+    `<i class="fa fa-diamond"></i>`,
+    `<i class="fa fa-paper-plane-o"></i>`,
+    `<i class="fa fa-anchor"></i>`,
+    `<i class="fa fa-bolt"></i>`,
+    `<i class="fa fa-cube"></i>`,
+    `<i class="fa fa-leaf"></i>`,
+    `<i class="fa fa-bicycle"></i>`,
+    `<i class="fa fa-bomb"></i>`,
+];
 
 /*
  * Display the cards on the page
@@ -25,6 +42,14 @@ function shuffle(array) {
     return array;
 }
 
+// Insert Symbols to card back
+function fillCards(cards) {
+    let cardBack = $(".back");
+    // console.log(cardBack);
+    for (let i = 0; i < cards.length; i++) {
+        $(cards[i]).appendTo(cardBack[i]);
+    }
+}
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -37,7 +62,10 @@ function shuffle(array) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+// All the logic done after document is ready
 $(document).ready( function () {
+    cards = shuffle(cards);
+    fillCards(cards);
     $(".card").on("click", function () {
         $(this).toggleClass("open");
     });
