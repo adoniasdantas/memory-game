@@ -27,6 +27,10 @@ body {
     margin: 50px auto;
 }
 
+header h1 {
+    text-align: center;
+}
+
 .card-grid {
     display: flex;
     flex-wrap: wrap;
@@ -69,4 +73,29 @@ body {
 
 .open {
     transform: rotateY(180deg);
+}
+
+/*
+ * Styles for the Score Panel
+ */
+
+.score-panel {
+    width: 50%;
+    margin: 0 auto 10px auto;
+}
+
+.score-panel .stars {
+    padding: 0;
+    display: inline-block;
+    margin: 0 5px 0 0;
+}
+
+.score-panel .stars li {
+    list-style: none;
+    display: inline-block;
+}
+
+.score-panel .restart {
+    float: right;
+    cursor: pointer;
 }
