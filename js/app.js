@@ -20,6 +20,9 @@ let cards = [
     `<i class="fa fa-bomb"></i>`,
 ];
 
+//Number of moves
+let moves = 0;
+
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -68,5 +71,6 @@ $(document).ready( function () {
     fillCards(cards);
     $(".card").on("click", function () {
         $(this).toggleClass("open");
+        $(".moves").text(++moves);
     });
 });
