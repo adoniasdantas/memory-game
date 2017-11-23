@@ -20,9 +20,6 @@ let cards = [
     `<i class="fa fa-bomb"></i>`,
 ];
 
-//Number of moves
-let moves = 0;
-
 /*
  * Display the cards on the page
  *   - shuffle the list of cards using the provided "shuffle" method below
@@ -66,11 +63,56 @@ function fillCards(cards) {
  */
 
 // All the logic done after document is ready
+
+//Practicing ES6 Destructuring Assignement
+let [firstPick, secondPick, moves, matches] = [null, null, 0, 0];
+
 $(document).ready( function () {
+
     cards = shuffle(cards);
+
     fillCards(cards);
-    $(".card").on("click", function () {
+
+    let card = $(".card");
+
+    card.on("click", function ( event ) {
+
+        //If is match, stop execution
+        if($(this).hasClass("match")) {
+            return;
+        }
+        //Open card
         $(this).toggleClass("open");
-        $(".moves").text(++moves);
+
+        //Check if there is two open cards except those that match
+        let open = $(".open").not(".match");
+
+        if (open.length === 2) {
+            $(".moves").text(++moves);
+            firstPick = open.first();
+            secondPick = open.last();
+
+            console.log("first pick class = " + firstPick.find("i").first().prop("class"));
+            console.log("second pick class = " + secondPick.find("i").first().prop("class"));
+
+            //If cards match
+            if (firstPick.find("i").first().prop("class") == secondPick.find("i").first().prop("class")) {
+                matches++;
+                firstPick.addClass("match");
+                secondPick.addClass("match");
+                if (matches === 8) {
+                    setTimeout(function() {
+                        alert(`Congratulations, you've finished the game using ${moves} moves`);
+                    }, 1000);
+                }
+            } else {
+                //Wait a moment until close cards
+                setTimeout(function () {
+                    firstPick.toggleClass("open");
+                    secondPick.toggleClass("open");
+                }, 1000);
+
+            }
+        }
     });
 });
