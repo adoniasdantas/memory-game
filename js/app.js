@@ -77,6 +77,7 @@ function cleanCards() {
 function restartGame() {
     cleanCards();
     startGame();
+    $(".stars").children().find("i").removeClass("fa-star-o").addClass("fa-star");
 }
 
 // All the logic done after document is ready
@@ -90,7 +91,7 @@ function startGame() {
 }
 
 //Practicing ES6 Destructuring Assignement
-let [firstPick, secondPick, moves, matches] = [null, null, 0, 0];
+let [firstPick, secondPick, moves, matches, stars] = [null, null, 0, 0, $(".stars").children()];
 
 $(document).ready( function () {
 
@@ -111,6 +112,14 @@ $(document).ready( function () {
 
         if (open.length === 2) {
             $(".moves").text(++moves);
+
+            if (moves === 13) {
+                $(stars[2]).find('i').removeClass("fa-star").addClass("fa-star-o");
+            }
+            if (moves === 19) {
+                $(stars[1]).find('i').removeClass("fa-star").addClass("fa-star-o");
+            }
+
             firstPick = open.first();
             secondPick = open.last();
 
