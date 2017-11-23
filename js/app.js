@@ -62,17 +62,39 @@ function fillCards(cards) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+function cleanCards() {
+    let cardBack = $(".back");
+
+    $(".card").removeClass("open");
+    $(".card").removeClass("match");
+
+    for (let i = 0; i < cards.length; i++) {
+        console.log(cardBack[i]);
+        cardBack.empty();
+    }
+}
+
+function restartGame() {
+    cleanCards();
+    startGame();
+}
+
 // All the logic done after document is ready
+function startGame() {
+    cards = shuffle(cards);
+    setTimeout(function () {
+        fillCards(cards);
+    }, 500);
+    moves = 0;
+    $(".moves").text(moves);
+}
 
 //Practicing ES6 Destructuring Assignement
 let [firstPick, secondPick, moves, matches] = [null, null, 0, 0];
 
 $(document).ready( function () {
 
-    cards = shuffle(cards);
-
-    fillCards(cards);
-
+    startGame();
     let card = $(".card");
 
     card.on("click", function ( event ) {
@@ -114,5 +136,9 @@ $(document).ready( function () {
 
             }
         }
+    });
+
+    $(".restart").on("click", function () {
+        restartGame();
     });
 });
