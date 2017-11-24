@@ -62,6 +62,7 @@ function fillCards(cards) {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 
+//Remove old symbol from cards and unflip the cards
 function cleanCards() {
     let cardBack = $(".back");
 
@@ -74,13 +75,15 @@ function cleanCards() {
     }
 }
 
+//Code to Start Over the game.
 function restartGame() {
     cleanCards();
     startGame();
+    //Restart Stars count
     $(".stars").children().find("i").removeClass("fa-star-o").addClass("fa-star");
 }
 
-// All the logic done after document is ready
+
 function startGame() {
     cards = shuffle(cards);
     setTimeout(function () {
@@ -95,6 +98,7 @@ function startGame() {
 //Practicing ES6 Destructuring Assignement
 let [firstPick, secondPick, moves, matches, stars, startTime] = [null, null, 0, 0, $(".stars").children(), Date.now()];
 
+// All the logic done after document is ready
 $(document).ready( function () {
 
     startGame();
@@ -115,9 +119,11 @@ $(document).ready( function () {
         if (open.length === 2) {
             $(".moves").text(++moves);
 
+            //Decreasing one star from the counter
             if (moves === 13) {
                 $(stars[2]).find('i').removeClass("fa-star").addClass("fa-star-o");
             }
+            //Decreasing the second star from the counter
             if (moves === 19) {
                 $(stars[1]).find('i').removeClass("fa-star").addClass("fa-star-o");
             }
@@ -130,7 +136,9 @@ $(document).ready( function () {
                 matches++;
                 firstPick.addClass("match");
                 secondPick.addClass("match");
+                //Player won the game
                 if (matches === 8) {
+                    //Next lines have the code necessary to show the message
                     let winner = $(".winner");
                     winner.css("background-color", "#fff");
                     winner.css("z-index", "1");
@@ -154,6 +162,7 @@ $(document).ready( function () {
     });
 
     $("#play-again-btn").on("click", function () {
+        //Hide the winner message and show the board back
         let winner = $(".winner");
         winner.css("background-color", "");
         winner.css("z-index", "-1");
