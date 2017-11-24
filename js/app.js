@@ -45,7 +45,7 @@ function shuffle(array) {
 // Insert Symbols to card back
 function fillCards(cards) {
     let cardBack = $(".back");
-    // console.log(cardBack);
+
     for (let i = 0; i < cards.length; i++) {
         $(cards[i]).appendTo(cardBack[i]);
     }
@@ -69,7 +69,7 @@ function cleanCards() {
     $(".card").removeClass("match");
 
     for (let i = 0; i < cards.length; i++) {
-        console.log(cardBack[i]);
+
         cardBack.empty();
     }
 }
@@ -124,9 +124,6 @@ $(document).ready( function () {
 
             firstPick = open.first();
             secondPick = open.last();
-
-            console.log("first pick class = " + firstPick.find("i").first().prop("class"));
-            console.log("second pick class = " + secondPick.find("i").first().prop("class"));
 
             //If cards match
             if (firstPick.find("i").first().prop("class") == secondPick.find("i").first().prop("class")) {
