@@ -87,6 +87,7 @@ function startGame() {
         fillCards(cards);
     }, 500);
     moves = 0;
+    matches = 0;
     $(".moves").text(moves);
     startTime = Date.now();
 }
