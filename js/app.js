@@ -132,9 +132,11 @@ $(document).ready( function () {
                 firstPick.addClass("match");
                 secondPick.addClass("match");
                 if (matches === 8) {
-                    setTimeout(function() {
-                        alert(`Congratulations, you've finished the game using ${moves} moves`);
-                    }, 1000);
+                    let winner = $(".winner");
+                    winner.css("background-color", "#fff");
+                    winner.css("z-index", "1");
+                    $(".moves-counter").text(moves);
+                    $(".stars-count").text($(".fa-star").length);
                 }
             } else {
                 //Wait a moment until close cards
@@ -148,6 +150,15 @@ $(document).ready( function () {
     });
 
     $(".restart").on("click", function () {
+        restartGame();
+    });
+
+    $("#play-again-btn").on("click", function () {
+        let winner = $(".winner");
+        winner.css("background-color", "");
+        winner.css("z-index", "-1");
+        $(".moves-counter").text(0);
+        $(".stars-count").text(0);
         restartGame();
     });
 });
