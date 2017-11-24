@@ -88,10 +88,11 @@ function startGame() {
     }, 500);
     moves = 0;
     $(".moves").text(moves);
+    startTime = Date.now();
 }
 
 //Practicing ES6 Destructuring Assignement
-let [firstPick, secondPick, moves, matches, stars] = [null, null, 0, 0, $(".stars").children()];
+let [firstPick, secondPick, moves, matches, stars, startTime] = [null, null, 0, 0, $(".stars").children(), Date.now()];
 
 $(document).ready( function () {
 
@@ -135,6 +136,7 @@ $(document).ready( function () {
                     let winner = $(".winner");
                     winner.css("background-color", "#fff");
                     winner.css("z-index", "1");
+                    $(".time-counter").text(Math.floor(( Date.now()- startTime ) / 1000 ));
                     $(".moves-counter").text(moves);
                     $(".stars-count").text($(".fa-star").length);
                 }
