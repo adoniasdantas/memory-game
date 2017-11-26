@@ -106,8 +106,9 @@ $(document).ready( function () {
 
     card.on("click", function ( event ) {
 
-        //If is match or there's already two open cards, stop execution
-        if($(this).hasClass("match") || $(".open").not(".match").length === 2) {
+        //If is match or there's already two open cards or player try to unflip a card, stop execution
+        if($(this).hasClass("match") || $(".open").not(".match").length === 2 ||
+            $(this).hasClass("open")) {
             return;
         }
         //Open card
