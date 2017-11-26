@@ -140,9 +140,10 @@ $(document).ready( function () {
                 //Player won the game
                 if (matches === 8) {
                     //Next lines have the code necessary to show the message
+                    $(".container").css("visibility", "hidden");
                     let winner = $(".winner");
+                    winner.css("visibility", "visible");
                     winner.css("background-color", "#fff");
-                    winner.css("z-index", "1");
                     $(".time-counter").text(startTime);
                     $(".moves-counter").text(moves);
                     $(".stars-count").text($(".fa-star").length);
@@ -165,8 +166,9 @@ $(document).ready( function () {
     $("#play-again-btn").on("click", function () {
         //Hide the winner message and show the board back
         let winner = $(".winner");
+        winner.css("visibility", "hidden");
         winner.css("background-color", "");
-        winner.css("z-index", "-1");
+        $(".container").css("visibility", "visible");
         $(".moves-counter").text(0);
         $(".stars-count").text(0);
         restartGame();
